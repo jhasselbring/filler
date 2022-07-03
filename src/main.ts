@@ -1,18 +1,12 @@
-const fs = require("fs");
-const characters: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const disk = require('diskusage');
+import fs from "fs";
+import { generateRandomCode } from "./generateRandomCode";
+import disk from "diskusage";
+
 let initialDiskSpace: number = Number();
 let path: string = 'c:';
-let generateRandomCode = function (length: number = 6): string {
-  let result: string = String(length);
-  let charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-};
 
-// Build directory name
+
+// Generate container directory name
 const dir: string = `C:\\${generateRandomCode(6)}\\`;
 
 // Create directory if not exist
@@ -34,18 +28,20 @@ disk.check(path, function (err: string, info: any) {
     while (1) {
       disk.check(path, function (err: string, info: any) {
         let currentDiskSpace: number = 0;
-  
+
         if (err) {
           console.log(err);
         } else {
           currentDiskSpace = info.free;
         }
-        let prg1: any = (currentDiskSpace / initialDiskSpace);
-        let prg2 = prg1 * 100;
-        let finalPrg = (100 - prg2).toFixed(0);
+        let prg1: number = (currentDiskSpace / initialDiskSpace);
+        let prg2: number = prg1 * 100;
+        let finalPrg: number = parseInt((100 - prg2).toFixed(0));
+
         console.clear();
         console.log(finalPrg + '% complete');
-        let name = generateRandomCode(32);
+
+        let name: string = generateRandomCode(32);
         try {
           fs.writeFileSync(dir + name, content);
         } catch (e) {
