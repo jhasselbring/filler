@@ -7,7 +7,7 @@
     "dev": "  tsc -w",
     "build": "npm run build:js && npm run build:exe",
     "build:js": "tsc",
-    "build:exe": "pkg ./js/main.js -o ./dist/shred"
+    "build:exe": "npx pkg ./src/main.js -o ./dist/shred"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/node": "^18.0.0",
     "check-disk-space": "^3.3.0",
+    "cli-progress": "^3.11.2",
     "diskusage": "^1.1.3",
     "pkg": "^5.7.0",
     "ts-node": "^10.8.1",
