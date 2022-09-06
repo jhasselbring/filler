@@ -5,11 +5,11 @@ const cliProgress = require('cli-progress');
 const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
 let initialDiskSpace: number = Number();
-let path: string = 'c:';
+let path: string = '/';
 
 
 // Generate container directory name
-const dir: string = `C:\\${generateRandomCode(6)}\\`;
+const dir: string = `/${generateRandomCode(6)}/`;
 
 // Create directory if not exist
 if (!fs.existsSync(dir)) {
